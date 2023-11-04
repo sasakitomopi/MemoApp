@@ -4,6 +4,12 @@ import Header from '../../components/header'
 import CircleBotton from '../../components/circleButton'
 import Icon from '../../components/icon'
 
+import {router} from 'expo-router'
+
+const handlePress = (): void =>{
+    router.push('/memo/edit')
+} 
+
 const Detail = (): JSX.Element => {
     return (
         <View style = {styles.container}>
@@ -19,7 +25,7 @@ const Detail = (): JSX.Element => {
                   本文用なので使い方を間違えると不自然に見えることもありますので要注意。 
                 </Text>
             </ScrollView>
-            <CircleBotton style= {{ top : 160, bottom: 'auto'}}>
+            <CircleBotton onPress={handlePress} style= {{ top : 160, bottom: 'auto'}}>
             <Icon name='pencil' size={40} color='#ffffff'/>
             </CircleBotton>
         </View> 
