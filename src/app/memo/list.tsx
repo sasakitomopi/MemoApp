@@ -1,4 +1,4 @@
-import {View , Text, StyleSheet} from 'react-native'
+import {View , StyleSheet} from 'react-native'
 import  Header  from '../../components/header';
 import  MemoListItem from '../../components/memoListItem'
 import  CircleBotton from '../../components/circleButton';
