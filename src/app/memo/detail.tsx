@@ -1,6 +1,5 @@
 import {Text , View , StyleSheet, ScrollView} from 'react-native'
 
-import Header from '../../components/header'
 import CircleBotton from '../../components/circleButton'
 import Icon from '../../components/icon'
 
@@ -13,7 +12,6 @@ const handlePress = (): void =>{
 const Detail = (): JSX.Element => {
     return (
         <View style = {styles.container}>
-            <Header/>
             <View style = {styles.memoHeader}>
                 <Text style= {styles.memoTitle}>買い物リスト</Text>
                 <Text style= {styles.memoDate}>2023年10月1日 10:00</Text>
@@ -25,7 +23,7 @@ const Detail = (): JSX.Element => {
                   本文用なので使い方を間違えると不自然に見えることもありますので要注意。 
                 </Text>
             </ScrollView>
-            <CircleBotton onPress={handlePress} style= {{ top : 160, bottom: 'auto'}}>
+            <CircleBotton onPress={handlePress} style= {{ top : 60, bottom: 'auto'}}>
             <Icon name='pencil' size={40} color='#ffffff'/>
             </CircleBotton>
         </View> 
