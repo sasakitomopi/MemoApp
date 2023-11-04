@@ -2,6 +2,7 @@ import {Text, View , TextInput , StyleSheet, TouchableOpacity} from 'react-nativ
 import Button from '../../components/button'
 
 import {Link, router} from 'expo-router'
+import {useState} from 'react'
 
 const handlePress = (): void => {
     // Login
@@ -9,12 +10,30 @@ const handlePress = (): void => {
 }
 
 const LogIn = () : JSX.Element => {
+    const [email, setEmail] = useState('')
+    const [password, setPassWord] = useState('')
     return (
         <View>
             <View style = {styles.inner}>
                 <Text style = {styles.title}>Log In</Text>
-                <TextInput style = {styles.input} value='Email Address'></TextInput>
-                <TextInput style = {styles.input} value='PassWord'></TextInput>
+                <TextInput 
+                    style = {styles.input}
+                    value={email}
+                    onChangeText={(text) => {setEmail(text)}}
+                    autoCapitalize='none'
+                    keyboardType='email-address'
+                    placeholder='Email Address'
+                    textContentType='emailAddress'>
+                </TextInput>
+                <TextInput 
+                    style = {styles.input} 
+                    value={password}
+                    onChangeText={(text) => {setPassWord(text)}}
+                    autoCapitalize='none'
+                    secureTextEntry
+                    placeholder='PassWord'
+                    textContentType='password'>
+                </TextInput>
                 <Button label='Submit' onPress={handlePress}></Button>
                 <View style={styles.footer}>
                      <Text style={styles.footerText}>Not registered?</Text>
