@@ -1,12 +1,23 @@
-import {Text, View , TextInput , StyleSheet, TouchableOpacity} from 'react-native'
+import {Text, View , TextInput , Alert, StyleSheet, TouchableOpacity} from 'react-native'
 import Button from '../../components/button'
 
 import { Link , router} from 'expo-router'
 import {useState} from 'react'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import {auth} from '../../config'
 
-const handlePress = (): void => {
+const handlePress = (email: string, password : string): void => {
     // regist
-    router.replace('/memo/list')
+    createUserWithEmailAndPassword(auth,email,password)
+        .then((userCredential) => {
+            console.log(userCredential.user.uid)
+            router.replace('/memo/list')
+        })
+        .catch((error)=>{
+            const {code , message} = error
+            console.log(code,message)
+            Alert.alert(message)
+        })
 }
 const SignUp = () : JSX.Element => {
     const [email, setEmail] = useState('')
@@ -33,10 +44,10 @@ const SignUp = () : JSX.Element => {
                     placeholder='PassWord'
                     textContentType='password'>
                 </TextInput>
-                <Button label='Submit' onPress={handlePress}></Button>
+                <Button label='Submit' onPress={() => {handlePress(email, password)}}></Button>
                 <View style={styles.footer}>
                      <Text style={styles.footerText}>Already registerd?</Text>
-                     <Link href='/auth/login' asChild>
+                     <Link href='/auth/login' asChild replace>
                         <TouchableOpacity>
                             <Text style={styles.footerLink}>Log In.</Text>
                         </TouchableOpacity>
